@@ -4,8 +4,9 @@
   {registered, []},
   {mod, { kashi_app, []}},
   {applications,
-   [kernel,
-    stdlib
+   [ kernel
+   , stdlib
+   , elli
    ]},
   {env,[]},
   {modules, []},

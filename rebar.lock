@@ -1,0 +1,4 @@
+[{<<"elli">>,
+  {git,"git://github.com/knutin/elli.git",
+       {ref,"0cae1521190459bdb16958be7350191df710d799"}},
+  0}].

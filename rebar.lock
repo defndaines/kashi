@@ -1,4 +1,8 @@
 [{<<"elli">>,
   {git,"git://github.com/knutin/elli.git",
        {ref,"0cae1521190459bdb16958be7350191df710d799"}},
+  0},
+ {<<"jsx">>,
+  {git,"https://github.com/talentdeficit/jsx.git",
+       {ref,"aaf915e173d0ea7e1201c0edd4930dc6c3cd179d"}},
   0}].

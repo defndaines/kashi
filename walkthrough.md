@@ -101,6 +101,15 @@ curl http://localhost:3000/bid -X POST -H "Content-Type:application/json" \
   -d '{"bid": 0}'
 ```
 
+## Add jsx Dependency
+
+Edit `rebar.config` to add the dependency.
+```
+{deps, [
+  {jsx, {git, "https://github.com/talentdeficit/jsx.git", {tag, "2.8.1"}}}
+]}.
+```
+
 ## Building a Release
 
     $ rebar3 release

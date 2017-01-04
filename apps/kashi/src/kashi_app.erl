@@ -5,7 +5,7 @@
 
 -module(kashi_app).
 
--behaviour(application).
+-behavior(application).
 
 %% Application callbacks
 -export([start/2, stop/1]).
@@ -15,11 +15,11 @@
 %%====================================================================
 
 start(_StartType, _StartArgs) ->
-    kashi_sup:start_link().
+  kashi_sup:start_link().
 
 %%--------------------------------------------------------------------
 stop(_State) ->
-    ok.
+  ok.
 
 %%====================================================================
 %% Internal functions

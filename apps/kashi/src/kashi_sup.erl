@@ -5,7 +5,7 @@
 
 -module(kashi_sup).
 
--behaviour(supervisor).
+-behavior(supervisor).
 
 %% API
 -export([start_link/0]).
@@ -20,15 +20,22 @@
 %%====================================================================
 
 start_link() ->
-    supervisor:start_link({local, ?SERVER}, ?MODULE, []).
+  supervisor:start_link({local, ?SERVER}, ?MODULE, []).
 
 %%====================================================================
 %% Supervisor callbacks
 %%====================================================================
 
-%% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
+%% Child :: {Id, StartFunc, Restart, Shutdown, Type, Modules}
 init([]) ->
-    {ok, { {one_for_all, 0, 1}, []} }.
+  ElliOpts = [{callback, kashi_elli_callback}, {port, 3000}],
+  ElliSpec = { kashi_http
+             , {elli, start_link, [ElliOpts]}
+             , permanent
+             , 5000
+             , worker
+             , [elli]},
+  {ok, { {one_for_all, 5, 10}, [ElliSpec]} }.
 
 %%====================================================================
 %% Internal functions

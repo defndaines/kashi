@@ -4,15 +4,15 @@
 -include_lib("elli/include/elli.hrl").
 -behavior(elli_handler).
 
-handle(Req, _Args) ->
+handle(Req, Args) ->
 	%% Delegate to three-arg handler function.
-	handle(Req#req.method, elli_request:path(Req), Req).
+	handle(Req#req.method, elli_request:path(Req), Req, Args).
 
-handle('POST', [<<"bid">>], _Req) ->
-  %% JSON = elli_request:post_arg(<<"bid">>, Req, <<"undefined">>),
-	{ok, [], <<"Thank you for your request!">>};
+handle('POST', [<<"bid">>], Req, _Args) ->
+  JSON = jsx:decode(Req#req.body, [return_maps]),
+  {ok, [{<<"Content-type">>, <<"application/json">>}], jsx:encode(JSON)};
 
-handle(_, _, _Req) ->
+handle(_, _, _Req, _Args) ->
 	{404, [], <<"Not Found">>}.
 
 %% @doc: Handle request events, like request completed, exception

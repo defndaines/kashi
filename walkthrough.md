@@ -94,6 +94,12 @@ Run the following to start up the application in a shell.
 After the shell is started, you can hit the webserver at
 [http://localhost:3000](http://localhost:3000).
 
+If you want to inspect the request records in the shell, then pull in the record
+header with:
+```
+rr("_build/default/lib/elli/include/elli.hrl").
+```
+
 ## Issue a Request
 
 ```
@@ -109,6 +115,20 @@ Edit `rebar.config` to add the dependency.
   {jsx, {git, "https://github.com/talentdeficit/jsx.git", {tag, "2.8.1"}}}
 ]}.
 ```
+
+This now allows JSON to be decoded. The body of the request can be converted to
+a map with:
+```
+JSON = jsx:decode(Req#req.body, [return_maps]).
+```  
+
+Then responses can be encoded back into a JSON string (binary) for the wire.
+```
+{ok, [{<<"Content-type">>, <<"application/json">>}], jsx:encode(JSON)}.
+```
+
+Putting these two together, we have an echo server which returns the JSON sent
+in the body as the response.
 
 ## Building a Release
 

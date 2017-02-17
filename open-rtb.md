@@ -1,4 +1,7 @@
-# Open RTB Transport Guidelines
+# OpenRTB Transport Guidelines
+
+These guidelines summarize the [OpenRTB 2.5 API
+Specification](http://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf).
 
 ## Transport
 
